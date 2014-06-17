@@ -1,0 +1,10 @@
+<ul>
+  <% @books.each do |book| %>
+    <li><%=book.title%></li>
+    <li><%=book.author%></li>
+    <li><%=book.description%></li>
+    <li><%=book.rating%></li>
+    <li><%=book.finished_on%></li>
+  <% end %>
+</ul>
+
