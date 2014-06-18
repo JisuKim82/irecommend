@@ -7,7 +7,8 @@ class Book < ActiveRecord::Base
   scope :finished, ->{ where('finished_on IS NOT NULL') }
   scope :recent, ->{ where('finished_on > ?', 10.days.ago) }
   scope :search, ->(keyword){ where('keywords LIKE ?',"%#{keyword.downcase}%") if keyword.present? }
-  
+  scope :filter, ->(title){ joins(:genres).where('genres.name = ?', title) if title.present? }
+
   ### replaced by "scope :recent, ->{...}"
   # def self.recent
   #   self.where('finished_on > ?', 10.days.ago)  

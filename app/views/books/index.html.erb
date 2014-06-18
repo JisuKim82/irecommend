@@ -29,7 +29,7 @@
 
   <div class='col-sm-12 book-form'>
     <p>
-      <%= form_for(Book.new,
+      <%= form_for(Book.new, remote: true,
                    html: { class: 'horizontal-form' }) do |f| %>
       <legend>New Book</legend>
 
