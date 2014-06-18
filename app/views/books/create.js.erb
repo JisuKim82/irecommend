@@ -1,4 +1,9 @@
-$('.book-list').prepend('<%=j render @book %>');
+
+var newBook = '<%= j render @book %>';
+//newBook.addClass("monkey");
+// $('.book-list').prepend('<%=j render @book %>');
+$('.book-list').prepend(newBook);
+$('.book-list').find('.<%= @book.id %>').addClass('highlight')
 var form = $('#new_book');
 form.find('input[type=text]').val('')
 form.find('input[type=radio]').removeAttr('checked')

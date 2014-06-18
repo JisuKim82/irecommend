@@ -12,3 +12,7 @@ h3 { margin-top: 0; }
 .book-form {
   display: none;
 }
+
+.highlight {
+  background: #FFFFCC;
+}
