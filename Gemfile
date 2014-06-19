@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'jquery-turbolinks'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+## Use sqlite3 as the database for Active Record
+## gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,4 +30,8 @@ gem 'spring',        group: :development
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+end
+
+group :development, :test do 
+  gem 'sqlite3'
 end
