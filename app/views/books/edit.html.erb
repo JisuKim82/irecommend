@@ -2,6 +2,7 @@
     <p>      
       <%= form_for(@book, 
                    html: { class: 'horizontal-form' }) do |f| %>
+      <%= render 'error_messages' %>
       <legend>Edit Book</legend>
       
       <div class='col-sm-5'>

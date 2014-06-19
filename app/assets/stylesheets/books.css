@@ -16,3 +16,8 @@ h3 { margin-top: 0; }
 .highlight {
   background: #FFFFCC;
 }
+
+#error_explanation {
+  color: red;
+}
+
