@@ -14,10 +14,21 @@ h3 { margin-top: 0; }
 }
 
 .highlight {
-  background: #FFFFCC;
+  /*background: #FFFFCC;*/
+  position:relative;
+  z-index:1;
+}
+
+.fadeout{
+  height:100%;
+  width:100%;
+  background-color: #FFFFCC;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1
 }
 
 #error_explanation {
   color: red;
 }
-

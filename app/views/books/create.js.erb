@@ -3,6 +3,9 @@ var newBook = '<%= j render @book %>';
 // $('.book-list').prepend('<%=j render @book %>');
 $('.book-list').prepend(newBook);
 $('.book-list').find('.<%= @book.id %>').addClass('highlight')
+$('.book-list').find('.highlight').append("<div class='fadeout'></div>")
+$(".fadeout").fadeOut(4000);
+
 var form = $('#new_book');
 form.find('input[type=text]').val('')
 form.find('input[type=radio]').removeAttr('checked')
