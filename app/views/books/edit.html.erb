@@ -14,12 +14,14 @@
           <% @genres.each do |genre| %>
             <div class="checkbox">
               <label>
-                <%= check_box_tag 'book[genre_ids][]', genre.id %> <%= genre.name %>
+                <%= check_box_tag 'book[genre_ids][]', genre.id, @book.genres.include?(genre)%> 
+                <%= genre.name %>
               </label>
             </div>
           <% end %>
         </div>
 
+        
         <br>
 
         <div class='form-group'>
