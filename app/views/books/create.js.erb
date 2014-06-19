@@ -1,6 +1,5 @@
 
 var newBook = '<%= j render @book %>';
-//newBook.addClass("monkey");
 // $('.book-list').prepend('<%=j render @book %>');
 $('.book-list').prepend(newBook);
 $('.book-list').find('.<%= @book.id %>').addClass('highlight')

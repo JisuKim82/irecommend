@@ -14,20 +14,20 @@ class BooksController < ApplicationController
   # def show
   # end
 
-  # # GET /books/new
+  # GET /books/new
   # def new
   #   @book = Book.new
   # end
 
   # # GET /books/1/edit
-  # def edit
-  # end
+  def edit
+    @genres = Genre.all
+  end
 
   # POST /books
   # POST /books.json
   def create
     @book = Book.new(book_params)
-
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
@@ -36,16 +36,20 @@ class BooksController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
+        #format.html { redirect_to ('/') }
       end
     end
+
+
   end
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    @genres = Genre.all
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to books_path, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }

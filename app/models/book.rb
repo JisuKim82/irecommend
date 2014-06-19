@@ -4,6 +4,8 @@ class Book < ActiveRecord::Base
 
   before_save :set_keywords
 
+  validates :title, presence: true
+
   scope :finished, ->{ where('finished_on IS NOT NULL') }
   scope :recent, ->{ where('finished_on > ?', 10.days.ago) }
   scope :search, ->(keyword){ where('keywords LIKE ?',"%#{keyword.downcase}%") if keyword.present? }

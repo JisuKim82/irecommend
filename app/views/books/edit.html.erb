@@ -1,40 +1,12 @@
-<div class="container">
-
-  <h1>Reading List</h1>
-
-  <ol class="breadcrumb">
-    <li class="active">
-      Books
-    </li>
-  </ol>
-
-  <div class='row'>
-    <div class='col-sm-12'>
-      <p>
-        <form>
-          <legend>Search</legend>
-          <div class='col-xs-4'>
-            <input type='text' class='form-control' value='<%= params[:keyword] %>' name='keyword' placeholder='Title, Author or Description' >
-          </div>
-        </form>
-      </p>
-      <p class='pull-right'>
-        <a href='#' id='show-form' class='btn btn-primary'>New Book Form</a>
-      </p>
-    </div>
-  </div>
-
-  <hr>
-
-
-  <div class='col-sm-12 book-form'>
-    <p>
-      <%= form_for(Book.new, remote: true,
+ <div class='col-sm-12'>
+    <p>      
+      <%= form_for(@book, 
                    html: { class: 'horizontal-form' }) do |f| %>
-      <legend>New Book</legend>
-
+      <legend>Edit Book</legend>
+      
       <div class='col-sm-5'>
         <div class='form-group'>
+          <p><%= image_from_amazon(@book.amazon_id) %></p>
 
           <label><strong>Genre</strong></label>
 
@@ -72,34 +44,18 @@
         </div>
 
         <div class='form-group'>
-          <%= f.submit class: 'btn btn-primary' %>
+          <%= f.submit class: 'btn btn-primary' %><br><br>
+          <%= link_to "Delete", @book, :method=>:delete, :class=>:destroy %> |
+          <%= link_to 'Cancel', books_path %> 
+ 
+
+          <span class="octicon octicon-flame"></span>
+
         </div>
       </div>
       <% end %>
     </p>
   </div>
 
-
-  <div class="row">
-    <div class="col-sm-8">
-      <ul class="list-unstyled book-list">
-
-        <%= render @books %>
-
-      </ul>
-    </div>
-    <div class="col-sm-4">
-      <h2>Genres</h2>
-      <ul class="list-unstyled">
-        <% @genres.each do |genre| %>
-          <li>
-            <%= link_to genre.name, books_path(filter: genre.name),
-              class: 'label label-primary' %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
 
 
