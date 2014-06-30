@@ -1,18 +1,19 @@
 require 'spec_helper'
 
 describe Book do
-  it "is valid with genre, title, author, description, amazon_id and rating" do
-    
-    fiction = Genre.create(name: 'Fiction')
-    book = Book.new(
+  before :each do 
+    @fiction = Genre.create(name: 'Fiction')
+    @book = Book.new(
       title: 'My Favorite Book',
       author: 'Jisu Kim',
       description: 'Lorem ipsum keis sieh ksie hskd',
       amazon_id: '1234567890',
       rating: '5',
-      genres: [fiction])
-    
-    expect(book).to be_valid
+      genres: [@fiction])
+  end
+
+  it "is valid with genre, title, author, description, amazon_id and rating" do    
+    expect(@book).to be_valid
   end
   
   it "is invalid without a genre" do
@@ -38,4 +39,23 @@ describe Book do
   it "is invalid without a rating" do
     expect(Book.new(rating: nil)).to have(1).errors_on(:rating)
   end
+
+  describe "#set_keywords" do
+    
+    it "sets keywords based on joined title/author/description that have been downcased" do
+      
+      fiction = Genre.create(name: 'Fiction')
+      book = Book.create(
+        title: 'How To',
+        author: 'Curious George',
+        description: 'Lorem ipsum',
+        amazon_id: '1234567890',
+        rating: '4',
+        genres: [fiction])
+      
+      expect(book.keywords).to eq "how to curious george lorem ipsum"
+    end
+  end
+
+
 end
