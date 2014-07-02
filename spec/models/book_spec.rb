@@ -63,18 +63,22 @@ describe Book do
     
     it "sets keywords based on joined title/author/description that have been downcased" do
       
-      fiction = Genre.create(name: 'Fiction')
-      book = Book.create(
-        title: 'How To',
-        author: 'Curious George',
-        description: 'Lorem ipsum',
-        amazon_id: '1234567890',
-        rating: '4',
-        genres: [fiction])
+      # fiction = Genre.create(name: 'Fiction')
+      # book = Book.create(
+      #   title: 'How To',
+      #   author: 'Curious George',
+      #   description: 'Lorem ipsum',
+      #   amazon_id: '1234567890',
+      #   rating: '4',
+      #   genres: [fiction])
       
-      expect(book.keywords).to eq "how to curious george lorem ipsum"
+      genre = create(:genre)
+      book = build(:book)
+      book.genres << genre
+      book.save
+
+      expect(book.keywords).to eq "how to use factorygirl jisu kim lorme ipsum kf factory"
     end
   end
-
 
 end
