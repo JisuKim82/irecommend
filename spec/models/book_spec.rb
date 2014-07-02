@@ -1,5 +1,19 @@
 require 'spec_helper'
 
+describe "Connecting Books to Genres through 2 Factories" do
+  before :each do 
+    @genre = FactoryGirl.create(:genre) # genre must be created first
+    @book = FactoryGirl.build(:book)
+    @book.genres << @genre
+  end
+
+  it "should associate the book with the genre" do
+    expect(@book.title).to eq 'How to use FactoryGirl'
+    expect(@genre.name).to eq 'Programming'
+    expect(@book.genres.length).to eq 1
+  end
+end
+
 describe Book do
   before :each do 
     @fiction = Genre.create(name: 'Fiction')
