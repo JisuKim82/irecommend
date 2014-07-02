@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "Connecting Books to Genres through 2 Factories" do
   before :each do 
-    @genre = create(:genre) # genre must be created first
-    @book = build(:book)
+    @genre = create(:genre) #genre must be created first
+    @book = build(:book)  #build instead of create due to validation check
     @book.genres << @genre
   end
 
@@ -35,23 +35,28 @@ describe Book do
   end
   
   it "is invalid without a title" do
-    expect(Book.new(title: nil)).to have(1).errors_on(:title)
+    book = build(:book, title: nil)
+    expect(book).to have(1).errors_on(:title)
   end
   
   it "is invalid without an author" do
-    expect(Book.new(author: nil)).to have(1).errors_on(:author)
+    book = build(:book, author: nil)
+    expect(book).to have(1).errors_on(:author)
   end
   
   it "is invalid without a description" do
-    expect(Book.new(description: nil)).to have(1).errors_on(:description)
+    book = build(:book, description: nil)
+    expect(book).to have(1).errors_on(:description)
   end
   
   it "is invalid without an amazon_id" do
-    expect(Book.new(amazon_id: nil)).to have(1).errors_on(:amazon_id)
+    book = build(:book, amazon_id: nil)
+    expect(book).to have(1).errors_on(:amazon_id)
   end
   
   it "is invalid without a rating" do
-    expect(Book.new(rating: nil)).to have(1).errors_on(:rating)
+    book = build(:book, rating: nil)
+    expect(book).to have(1).errors_on(:rating)
   end
 
   describe "#set_keywords" do
