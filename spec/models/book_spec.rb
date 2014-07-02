@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe "Connecting Books to Genres through 2 Factories" do
   before :each do 
-    @genre = create(:genre) #genre must be created first
-    @book = build(:book)  #build instead of create due to validation check
-    @book.genres << @genre
+    @genre = create(:genre) 
+    @book = build(:book)  
   end
 
   it "should associate the book with the genre" do
