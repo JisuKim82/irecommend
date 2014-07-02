@@ -11,7 +11,7 @@ FactoryGirl.define do
     name 'Programming'
   end
 
-  factory :bookgenre do
+  factory :book_genre do
     book
     genre
   end
