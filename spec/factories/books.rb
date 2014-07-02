@@ -5,6 +5,11 @@ FactoryGirl.define do
     description "Lorme Ipsum Kf Factory"
     amazon_id "0987654321"
     rating 3
+
+    #takes care of the validation requirement of book requiring a genre
+    after(:build) do |book|
+      book.genres << create(:genre)
+    end
   end
 
   factory :genre do
