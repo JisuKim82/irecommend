@@ -10,6 +10,10 @@ FactoryGirl.define do
     after(:build) do |book|
       book.genres << create(:genre)
     end
+
+    factory :invalid_book do
+      title nil
+    end
   end
 
   factory :genre do
