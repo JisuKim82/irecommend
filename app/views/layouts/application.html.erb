@@ -8,7 +8,20 @@
 </head>
 <body>
 
-<p>Logged in as <%= current_user.email %></p>
+<ul>
+  <% if logged_in? %>
+    <li>
+      <%= link_to "Logout", "/logout" %></li>
+    <p>
+      Logged in as <%= current_user.email if current_user %>
+    </p>
+  <% else %>
+    <li>
+      <%= link_to 'Login', '/login' %>
+    </li>
+  <% end %>
+</ul>
+
 <%= yield %>
 
 </body>
