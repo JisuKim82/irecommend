@@ -1,6 +1,7 @@
 class Book < ActiveRecord::Base
   has_many :book_genres
   has_many :genres, through: :book_genres
+  belongs_to :user
 
   before_save :set_keywords
 
