@@ -21,7 +21,12 @@ class BooksController < ApplicationController
 
   # # GET /books/1/edit
   def edit
-    @genres = Genre.all
+    if !session[:user_id]
+      flash[:notice] = "Please Login"
+      redirect_to login_path
+    else
+      @genres = Genre.all
+    end
   end
 
   # POST /books
