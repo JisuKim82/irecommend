@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :login_required, only: [:edit, :update, :destroy]
   # GET /books
   # GET /books.json
   def index
@@ -21,12 +21,7 @@ class BooksController < ApplicationController
 
   # # GET /books/1/edit
   def edit
-    if !logged_in?
-      flash[:notice] = "Please Login"
-      redirect_to login_path
-    else
-      @genres = Genre.all
-    end
+    @genres = Genre.all
   end
 
   # POST /books
@@ -66,11 +61,6 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    if !logged_in
-      flash[:notice] = "Please Login"
-      redirect_to login_path
-    end
-
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
