@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  def login
+  end
+
   def new
   end
 
@@ -8,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/"
     else
-      render :new
+      render :login
     end
   end
 end
