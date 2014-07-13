@@ -21,7 +21,7 @@ class BooksController < ApplicationController
 
   # # GET /books/1/edit
   def edit
-    if !session[:user_id]
+    if !logged_in?
       flash[:notice] = "Please Login"
       redirect_to login_path
     else
@@ -66,6 +66,11 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
+    if !logged_in
+      flash[:notice] = "Please Login"
+      redirect_to login_path
+    end
+
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
