@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+#add password
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'jquery-turbolinks'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
