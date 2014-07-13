@@ -5,16 +5,16 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
-    if @user #&& valid_user?
+    if @user && @user.authenticate(params[:password])
       login(@user)
       redirect_to "/"
     else
-      render :login
+      redirect_to '/login', :notice => "Invalid email/password"
     end
   end
 
   def destroy
     reset_session
-    redirect_to '/', :notice => "You're logged out"
+    redirect_to '/login', :notice => "You're logged out"
   end
 end
